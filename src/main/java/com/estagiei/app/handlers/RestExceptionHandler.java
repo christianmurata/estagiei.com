@@ -1,5 +1,6 @@
 package com.estagiei.app.handlers;
 
+import com.estagiei.app.errors.BuilderError;
 import com.estagiei.app.errors.ValidationExceptionError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,7 @@ public class RestExceptionHandler {
             invalidFields.put(fieldName, errorMessage);
         });
 
-        ValidationExceptionError error = ValidationExceptionError.Builder
-                .newBuilder()
+        ValidationExceptionError error = BuilderError.newBuild(ValidationExceptionError.class)
                 .timestamp(new Date().getTime())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .title("Validation Error")
