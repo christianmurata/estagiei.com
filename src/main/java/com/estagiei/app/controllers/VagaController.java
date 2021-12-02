@@ -19,21 +19,39 @@ public class VagaController {
     @GetMapping("/empresas/{empresa}/vagas")
     public List<Vaga> index(@PathVariable("empresa") Optional<Empresa> empresa)
             throws NotFoundException {
-        if(empresa.isEmpty())
-            throw new NotFoundException("Empresa não encontrada");
+        verifyEmpresa(empresa);
 
         return vagaRepository.findAllByEmpresaId(empresa.get().getId());
+    }
+
+    @GetMapping("/empresas/{empresa}/vagas/{id}")
+    public Vaga detail(@PathVariable("empresa") Optional<Empresa> empresa,
+                       @PathVariable("id") Optional <Vaga> vaga)
+            throws NotFoundException {
+        verifyEmpresa(empresa);
+        verifyVaga(vaga);
+
+        return vaga.get();
     }
 
     @PostMapping("/empresas/{empresa}/vagas")
     public Vaga create (@PathVariable("empresa") Optional<Empresa> empresa,
                         @RequestBody @Valid Vaga newVaga)
             throws NotFoundException {
-        if(empresa.isEmpty())
-            throw new NotFoundException("Empresa não encontrada");
+        verifyEmpresa(empresa);
 
         newVaga.setEmpresa(empresa.get());
 
-        return vagaRepository.save(newVaga);
+        return vagaRepository.saveAndFlush(newVaga);
+    }
+
+    public void verifyEmpresa(Optional<Empresa> empresa) throws NotFoundException {
+        if(empresa.isEmpty())
+            throw new NotFoundException("Empresa não encontrada");
+    }
+
+    public void verifyVaga(Optional<Vaga> vaga) throws NotFoundException {
+        if(vaga.isEmpty())
+            throw new NotFoundException("Vaga não encontrada");
     }
 }

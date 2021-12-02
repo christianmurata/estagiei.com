@@ -4,9 +4,6 @@ import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "empresas")
@@ -23,13 +20,9 @@ public class Empresa {
 
     private String logo;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "endereco_id")
-    @RestResource(path = "enderecoEmpresa", rel = "endereco")
     private Endereco endereco;
-
-    @OneToMany(mappedBy = "empresa")
-    private Set<Vaga> vagas = new HashSet<>();;
 
     public Empresa() {}
 

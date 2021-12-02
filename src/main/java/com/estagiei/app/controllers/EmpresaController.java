@@ -3,7 +3,6 @@ package com.estagiei.app.controllers;
 import com.estagiei.app.exceptions.NotFoundException;
 import com.estagiei.app.models.Empresa;
 import com.estagiei.app.models.Endereco;
-import com.estagiei.app.models.Vaga;
 import com.estagiei.app.repositories.EmpresaRepository;
 import com.estagiei.app.repositories.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +34,6 @@ public class EmpresaController {
 
     @PostMapping("/empresas")
     public Empresa create(@Valid @RequestBody Empresa newEmpresa) {
-        return empresaRepository.save(newEmpresa);
+        return empresaRepository.saveAndFlush(newEmpresa);
     }
 }

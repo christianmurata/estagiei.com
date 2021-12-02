@@ -22,9 +22,8 @@ public class Vaga {
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-    @OneToOne
-    @JoinColumn(name = "endereco_id")
-    @RestResource(path = "enderecoVaga", rel = "endereco")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
 
     public Vaga() {}

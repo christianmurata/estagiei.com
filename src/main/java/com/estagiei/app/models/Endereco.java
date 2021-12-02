@@ -26,6 +26,10 @@ public class Endereco {
 
     public Endereco() {}
 
+    public Endereco(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
