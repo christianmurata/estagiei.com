@@ -2,6 +2,7 @@ package com.estagiei.app.handlers;
 
 import com.estagiei.app.errors.BuilderError;
 import com.estagiei.app.errors.ValidationExceptionError;
+import com.estagiei.app.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -36,5 +37,18 @@ public class RestExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<?> handleNotFoundException(
+            NotFoundException notFoundException) {
+        ValidationExceptionError error = BuilderError.newBuild(ValidationExceptionError.class)
+                .timestamp(new Date().getTime())
+                .status(HttpStatus.NOT_FOUND.value())
+                .title("Not Found")
+                .detail(notFoundException.getMessage())
+                .build();
+
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }
