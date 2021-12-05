@@ -1,4 +1,4 @@
-package com.estagiei.app.controllers;
+package com.estagiei.app.controllers.api;
 
 import com.estagiei.app.exceptions.NotFoundException;
 import com.estagiei.app.models.Empresa;
@@ -12,11 +12,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/empresas")
 public class VagaController {
     @Autowired
     VagaRepository vagaRepository;
 
-    @GetMapping("/empresas/{empresa}/vagas")
+    @GetMapping("/{empresa}/vagas")
     public List<Vaga> index(@PathVariable("empresa") Optional<Empresa> empresa)
             throws NotFoundException {
         verifyEmpresa(empresa);
@@ -24,7 +25,7 @@ public class VagaController {
         return vagaRepository.findAllByEmpresaId(empresa.get().getId());
     }
 
-    @GetMapping("/empresas/{empresa}/vagas/{id}")
+    @GetMapping("/{empresa}/vagas/{id}")
     public Vaga detail(@PathVariable("empresa") Optional<Empresa> empresa,
                        @PathVariable("id") Optional <Vaga> vaga)
             throws NotFoundException {
@@ -34,7 +35,7 @@ public class VagaController {
         return vaga.get();
     }
 
-    @PostMapping("/empresas/{empresa}/vagas")
+    @PostMapping("/{empresa}/vagas")
     public Vaga create (@PathVariable("empresa") Optional<Empresa> empresa,
                         @RequestBody @Valid Vaga newVaga)
             throws NotFoundException {

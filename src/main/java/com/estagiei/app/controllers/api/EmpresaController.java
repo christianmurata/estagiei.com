@@ -1,4 +1,4 @@
-package com.estagiei.app.controllers;
+package com.estagiei.app.controllers.api;
 
 import com.estagiei.app.exceptions.NotFoundException;
 import com.estagiei.app.models.Empresa;
@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/empresas")
 public class EmpresaController {
     @Autowired
     EmpresaRepository empresaRepository;
@@ -19,12 +20,12 @@ public class EmpresaController {
     @Autowired
     VagaRepository vagaRepository;
 
-    @GetMapping("/empresas")
+    @GetMapping("")
     public String index(){
         return "empresas";
     }
 
-    @GetMapping("/empresas/{id}")
+    @GetMapping("/{id}")
     public Empresa details(@PathVariable("id") Optional<Empresa> empresa) throws NotFoundException {
         if(empresa.isEmpty())
             throw new NotFoundException("Empresa não encontrada");
@@ -32,7 +33,7 @@ public class EmpresaController {
         return empresa.get();
     }
 
-    @PostMapping("/empresas")
+    @PostMapping("")
     public Empresa create(@Valid @RequestBody Empresa newEmpresa) {
         return empresaRepository.saveAndFlush(newEmpresa);
     }
