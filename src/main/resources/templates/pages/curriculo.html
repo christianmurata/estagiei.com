@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="default/head"></head>
+
+<body class="bg-gray-200">
+  <div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+      <div class="col-12">
+        <navbar th:replace="default/navbar"></navbar>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content  mt-0">
+    <div class="page-header align-items-start min-vh-100"
+      style="background-image: url('https://cdn.dribbble.com/users/1626229/screenshots/16866538/media/3aa598b10e5caa676e1dfb69078424d6.jpg?compress=1&resize=1200x900');">
+      <span class="mask bg-gradient-dark opacity-6"></span>
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-7 col-md-1 col-1 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Dados Pessoais</h4>
+                  <div class="row mt-3">
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <form role="form" class="text-start">
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label">Nome Completo</label>
+                    <input type="email" class="form-control">
+                  </div>
+                  <div class="input-group input-group-outline mb-3">
+                    <label class="form-label">CPF</label>
+                    <input type="password" class="form-control">
+                  </div>
+                  <div class="input-group input-group-outline mb-3">
+                    <label class="form-label">Data de Nascimento</label>
+                    <input type="password" class="form-control">
+                  </div>
+                  <div class="input-group input-group-outline mb-3">
+                    <label class="form-label">Estado civil</label>
+                    <input type="password" class="form-control">
+                  </div>
+                  <fieldset class="row mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0">Sexo:</legend>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
+                        checked>
+                      <label class="form-check-label" for="gridRadios1">
+                        Feminino
+                      </label>
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                      <label class="form-check-label" for="gridRadios2">
+                        Masculino
+                      </label>
+                    </div>
+                    <fieldset class="row mb-3">
+                      <legend class="col-form-label col-sm-2 pt-0">Aderir:</legend>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
+                          checked>
+                        <label class="form-check-label" for="gridRadios1">
+                          Prefiro usar o nome social
+                        </label>
+                      </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Campo de contato-->
+        <p>
+        <div class="col-lg-7 col-md-1 col-1 mx-auto">
+          <div class="card z-index-0 fadeIn3 fadeInBottom">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Contato</h4>
+                <div class="row mt-3">
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form role="form" class="text-start">
+                <div class="input-group input-group-outline my-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control">
+                </div>
+                <div class="input-group input-group-outline mb-3">
+                  <label class="form-label">Tipo de Telefone</label>
+                  <input type="password" class="form-control">
+                </div>
+                <div class="input-group input-group-outline mb-3">
+                  <label class="form-label">Número</label>
+                  <input type="password" class="form-control">
+                </div>
+              </form>
+            </div>
+          </div>
+          <!---Endereco-->
+          <p>
+          <div class="col-lg-12 col-md-1 col-1 mx-auto">
+            <div class="card z-index-0 fadeIn3 fadeInBottom">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Endereço</h4>
+                  <div class="row mt-3">
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <form role="form" class="text-start">
+                  <div class="input-group input-group-outline my-3">
+                    <label class="form-label">CEP</label>
+                    <input type="email" class="form-control">
+                  </div>
+                  <div class="input-group input-group-outline mb-3">
+                    <label class="form-label">Cidade</label>
+                    <input type="password" class="form-control">
+                  </div>
+                  <div class="input-group input-group-outline mb-3">
+                    <label class="form-label">UF</label>
+                    <input type="password" class="form-control">
+                  </div>
+                  <div class="input-group input-group-outline mb-3">
+                    <label class="form-label">Logradouro </label>
+                    <input type="password" class="form-control">
+                  </div>
+                  <div class="input-group input-group-outline mb-3">
+                    <label class="form-label">Complemento </label>
+                    <input type="password" class="form-control">
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!--Portado de deficiencia-->
+            <p>
+            <div class="col-lg-12 col-md-1 col-1 mx-auto">
+              <div class="card z-index-0 fadeIn3 fadeInBottom">
+                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                  <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
+                    <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">PDC - Portador de Deficiência</h4>
+                    <div class="row mt-3">
+                    </div>
+                  </div>
+                </div>
+                <fieldset class="row mb-3">
+                  <legend class="col-form-label col-sm-2 pt-0"></legend>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
+                      checked>
+                    <label class="form-check-label" for="gridRadios1">
+                      Não sou PDC
+                    </label>
+                    <h><input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                      <h><label class="form-check-label" for="gridRadios2">
+                          Sou PDC
+                        </label>
+                        <div class="form-check form-check-info text-start ps-0">
+                          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                          <label class="form-check-label" for="flexCheckDefault">
+                            Eu concordo que o <a href="javascript:;" class="text-dark font-weight-bolder">Termos e
+                              Condições</a>
+                          </label>
+                        </div>
+                  </div>
+                  </form>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cadastre</button>
+            </div>
+            </form>
+          </div>
+        </div>
+        </p>
+      </div>
+    </div>
+
+    <footer class="footer position-absolute bottom-2 py-2 w-100">
+      <div class="container">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-12 col-md-6 my-auto">
+            <div class="copyright text-center text-sm text-white text-lg-start">
+              ©
+              <script>
+                document.write(new Date().getFullYear())
+              </script>,
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              <a href="https://www.estagiei.com" class="font-weight-bold text-white" target="_blank">Estagiei.com</a>
+
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+              <li class="nav-item">
+                <a href="https://www.estagiei.com" class="nav-link text-white" target="_blank">Estagiei.com</a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="https://www.estagiei.com/license" class="nav-link pe-0 text-white" target="_blank">License</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    </div>
+  </main>
+
+  <script th:replace="default/scripts"></script>
+</body>
+
+</html>
