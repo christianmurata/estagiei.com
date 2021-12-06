@@ -9,6 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.RestClientException;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -50,5 +51,19 @@ public class RestExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RestClientException.class)
+    public ResponseEntity<?> handleRestClientException(
+            RestClientException restClientException) {
+        ValidationExceptionError error = BuilderError
+                .newBuild(ValidationExceptionError.class)
+                .timestamp(new Date().getTime())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .title("API error")
+                .detail(restClientException.getMessage())
+                .build();
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 }
