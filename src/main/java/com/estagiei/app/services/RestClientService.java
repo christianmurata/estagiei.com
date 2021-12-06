@@ -3,10 +3,12 @@ package com.estagiei.app.services;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
+@Service
 public class RestClientService<T> {
     @Value("${server.url}:${server.port}/api")
     private String url;
@@ -15,6 +17,8 @@ public class RestClientService<T> {
 
     public final HttpHeaders headers = new HttpHeaders();
     public final RestTemplate restTemplate = new RestTemplate();
+
+    public RestClientService() {}
 
     public RestClientService<T> api() {
         headers.setContentType(MediaType.APPLICATION_JSON);

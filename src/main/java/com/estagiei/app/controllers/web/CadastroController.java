@@ -5,6 +5,7 @@ import com.estagiei.app.forms.UsuarioForm;
 import com.estagiei.app.models.Nivel;
 import com.estagiei.app.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,12 +38,13 @@ public class CadastroController {
         if(bindingResult.hasErrors()) return "pages/cadastro";
 
         Nivel nivel = new Nivel((short) 1);
+        String pass = new BCryptPasswordEncoder(10).encode(usuarioForm.getSenha());
 
         Usuario newUsuario = new Usuario();
         newUsuario.setCpf(usuarioForm.getCpf());
         newUsuario.setNome(usuarioForm.getNome());
         newUsuario.setEmail(usuarioForm.getEmail());
-        newUsuario.setSenha(usuarioForm.getSenha());
+        newUsuario.setSenha(pass);
         newUsuario.setNivel(nivel);
 
         Usuario usuarioResponse = restClientService.api()

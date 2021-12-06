@@ -83,8 +83,8 @@ public class Usuario {
         return nivel;
     }
 
-    public void setNivel(Short nivel) {
-        this.nivel = new Nivel(nivel);
+    public void setNivel(Nivel nivel) {
+        this.nivel = nivel;
     }
 
     public Endereco getEndereco() {
