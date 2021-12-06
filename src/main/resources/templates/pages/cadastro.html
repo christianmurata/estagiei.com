@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="default/head"></head>
-  <link href="../assets/css/validation.css" rel="stylesheet">
-</head>
+
+<link href="../assets/css/validation.css" rel="stylesheet">
 
 <body class="">
   <div th:replace="default/navbar"></div>
@@ -27,45 +27,68 @@
                   <p class="mb-0">Digite seu e-mail e senha para se cadastrar</p>
                 </div>
                 <div class="card-body">
-
+                  <div th:if="${erro}" class="alert alert-danger alert-dismissible text-white" role="alert">
+                    <span class="text-sm" th:text="${erro}"></span>
+                    <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  
                   <!-- 
                     @see https://frontbackend.com/thymeleaf/thymeleaf-utility-methods-for-strings
                     @see https://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#standard-expression-syntax 
                   -->
 
                   <form role="form" action="#" th:action="@{/cadastro}" th:object="${usuarioForm}" method="post">
-                    <div class="input-group input-group-outline mb-3"
-                      th:classappend="${not #strings.isEmpty(usuarioForm.nome)} ? 'is-filled'">
-                      <label class="form-label">Nome</label>
-                      <input type="text" name="nome" class="form-control" th:value="*{nome}" th:field="*{nome}"
-                        th:errorclass="is-invalid" />
+                    <div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
+                    
+                      <div class="input-group input-group-outline mb-3"
+                        th:classappend="${not #strings.isEmpty(usuarioForm.nome)} ? 'is-filled'">
+                        <label class="form-label">Nome</label>
+                        <input type="text" name="nome" class="form-control" th:value="*{nome}" th:field="*{nome}"
+                          th:errorclass="is-invalid" />
+                      </div>
+
+                      <label class="error" for="nome" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></label>
                     </div>
-                    <div class="input-group input-group-outline mb-3"
-                      th:classappend="${not #strings.isEmpty(usuarioForm.email)} ? 'is-filled'">
-                      <label class="form-label">Email</label>
-                      <input type="email" name="email" class="form-control" th:field="*{email}" th:value="*{email}"
-                        th:errorclass="is-invalid" />
+                    <div class="form-group" th:classappend="${#fields.hasErrors('cpf')} ? 'has-error'">
+                      <div class="input-group input-group-outline mb-3"
+                        th:classappend="${not #strings.isEmpty(usuarioForm.cpf)} ? 'is-filled'">
+                        <label class="form-label">CPF</label>
+                        <input type="text" name="cpf" class="form-control" th:field="*{cpf}" th:value="*{cpf}"
+                          th:errorclass="is-invalid" />
+                      </div>
+
+                      <label class="error" for="cpf" th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}"></label>
                     </div>
-                    <div class="input-group input-group-outline mb-3"
-                      th:classappend="${not #strings.isEmpty(usuarioForm.senha)} ? 'is-filled'">
-                      <label class="form-label">Senha</label>
-                      <input type="password" name="senha" class="form-control" th:field="*{senha}" th:value="${senha}"
-                        th:errorclass="is-invalid" />
+                    <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+                      <div class="input-group input-group-outline mb-3" th:classappend="${not #strings.isEmpty(usuarioForm.email)} ? 'is-filled'">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" th:field="*{email}" th:value="*{email}" th:errorclass="is-invalid" />
+                      </div>
+  
+                      <label class="error" for="email" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+                    </div>
+                    <div class="form-group" th:classappend="${#fields.hasErrors('senha')} ? 'has-error'">
+                      <div class="input-group input-group-outline mb-3" th:classappend="${not #strings.isEmpty(usuarioForm.senha)} ? 'is-filled'">
+                        <label class="form-label">Senha</label>
+                        <input type="password" name="senha" class="form-control" th:field="*{senha}" th:value="${senha}"
+                            th:errorclass="is-invalid" />
+    
+                      </div>
+                      <label class="error" for="senha" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></label>
                     </div>
 
-                    <div class="input-group input-group-outline mb-3"
-                      th:classappend="${not #strings.isEmpty(usuarioForm.confirma_senha)} ? 'is-filled'">
-                      <label class="form-label">Confirme a Senha</label>
-                      <input type="password" name="confirma_senha" class="form-control" th:field="*{confirma_senha}"
-                        th:errorclass="is-invalid" />
+                    <div class="form-group" th:classappend="${#fields.hasErrors('confirma_senha')} ? 'has-error'">
+                      <div class="input-group input-group-outline mb-3" th:classappend="${not #strings.isEmpty(usuarioForm.confirma_senha)} ? 'is-filled'">
+                        <label class="form-label">confirme a senha</label>
+                        <input type="password" name="confirma_senha" class="form-control" th:field="*{confirma_senha}" th:value="${confirma_senha}"
+                            th:errorclass="is-invalid" />
+    
+                      </div>
+                      <label class="error" for="confirma_senha" th:if="${#fields.hasErrors('confirma_senha')}" th:errors="*{confirma_senha}"></label>
                     </div>
-                    <!-- <div class="form-check form-check-info text-start ps-0">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Eu concordo que o <a href="javascript:;" class="text-dark font-weight-bolder">Termos e
-                          Condições</a>
-                      </label>
-                    </div> -->
+                    
                     <div class="text-center">
                       <button type="submit"
                         class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Cadastre</button>

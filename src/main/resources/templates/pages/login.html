@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="default/head">
-  <link href="../assets/css/validation.css" rel="stylesheet">
-</head>
+<head th:replace="default/head"></head>
+
+<link href="../assets/css/validation.css" rel="stylesheet">
 
 <body class="bg-gray-200">
   <div th:replace="default/navbar"></div>
@@ -21,21 +21,30 @@
                 </div>
               </div>
               <div class="card-body">
-                <form role="form" class="text-start">
-                  <div class="input-group input-group-outline my-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control">
+                <form role="form" class="text-start" action="#" th:action="@{/login}" th:object="${loginForm}" method="post">
+                  <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+                    <div class="input-group input-group-outline my-3" th:classappend="${not #strings.isEmpty(loginForm.email)} ? 'is-filled'">
+                      <label class="form-label">Email</label>
+                      <input type="email" name="email" class="form-control" th:field="*{email}" th:value="*{email}" th:errorclass="is-invalid" />
+                    </div>
+
+                    <label class="error" for="email" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
                   </div>
-                  <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">senha</label>
-                    <input type="password" class="form-control">
+                  <div class="form-group" th:classappend="${#fields.hasErrors('senha')} ? 'has-error'">
+                    <div class="input-group input-group-outline mb-3" th:classappend="${not #strings.isEmpty(loginForm.senha)} ? 'is-filled'">
+                      <label class="form-label">Senha</label>
+                      <input type="password" name="senha" class="form-control" th:field="*{senha}" th:value="${senha}"
+                          th:errorclass="is-invalid" />
+  
+                    </div>
+                    <label class="error" for="senha" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></label>
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe">
                     <label class="form-check-label mb-0 ms-2" for="rememberMe">Lembrar</label>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2">Login</button>
+                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Login</button>
                   </div>
                   <p class="mt-4 text-sm text-center">
                     Não possui uma conta?
