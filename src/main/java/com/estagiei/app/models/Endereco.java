@@ -1,25 +1,24 @@
 package com.estagiei.app.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "enderecos")
 public class Endereco {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @Column(nullable = false)
     private String rua;
 
-    @NotNull
+    @Column(nullable = false)
     private String numero;
 
-    @NotNull
+    @Column(nullable = false)
     private String bairro;
 
-    @NotNull
+    @Column(nullable = false)
     private String cep;
 
     private String complemento;

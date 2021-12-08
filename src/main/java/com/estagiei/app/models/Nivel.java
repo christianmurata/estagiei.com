@@ -1,17 +1,16 @@
 package com.estagiei.app.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Collection;
 
 @Entity
 @Table(name = "niveis")
 public class Nivel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short id;
 
-    @NotNull
+    @Column(nullable = false)
     private String descricao;
 
     @ManyToMany

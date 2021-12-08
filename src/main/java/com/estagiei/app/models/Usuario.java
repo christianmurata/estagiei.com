@@ -1,32 +1,28 @@
 package com.estagiei.app.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotBlank(message = "cpf é obrigatorio")
+    @Column(unique = true, nullable = false)
     private String cpf;
 
-    @NotNull
+    @Column(nullable = false)
     private String nome;
 
-    @NotNull
+    @Column(nullable = false)
     private String email;
 
-    @NotNull
+    @Column(nullable = false)
     private String senha;
 
-    @NotNull
     @OneToOne
-    @JoinColumn(name = "nivel_id", referencedColumnName = "id")
+    @JoinColumn(name = "nivel_id", referencedColumnName = "id", nullable = false)
     private Nivel nivel;
 
     @OneToOne

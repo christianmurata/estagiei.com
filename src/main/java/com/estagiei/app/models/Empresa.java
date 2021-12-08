@@ -1,21 +1,18 @@
 package com.estagiei.app.models;
 
-import org.springframework.data.rest.core.annotation.RestResource;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "empresas")
 public class Empresa {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @Column(nullable = false)
     private String nome;
 
-    @NotNull
+    @Column(unique = true, nullable = false)
     private String cnpj;
 
     private String logo;

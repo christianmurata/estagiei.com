@@ -1,9 +1,8 @@
 package com.estagiei.app.models;
 
-import org.springframework.data.rest.core.annotation.RestResource;
+import com.estagiei.app.enums.Modalidade;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "vagas")
@@ -12,11 +11,15 @@ public class Vaga {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
+    @Column(nullable = false)
     private String titulo;
 
-    @NotNull
+    @Column(nullable = false)
     private String descricao;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Modalidade modalidade;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
@@ -58,6 +61,14 @@ public class Vaga {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public Modalidade getModalidade() {
+        return modalidade;
+    }
+
+    public void setModalidade(Modalidade modalidade) {
+        this.modalidade = modalidade;
     }
 
     public Endereco getEndereco() {

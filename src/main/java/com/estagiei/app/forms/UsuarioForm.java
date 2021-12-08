@@ -16,10 +16,10 @@ public class UsuarioForm {
     @NotEmpty(message = "O email não deve ser vazio")
     private String email;
 
-    @NotEmpty(message = "A senha não deve ser vazio")
+    @NotEmpty(message = "A senha não deve ser vazia")
     private String senha;
 
-    @NotEmpty(message = "A confirmação de senha não deve ser vazio")
+    @NotEmpty(message = "A confirmação de senha não deve ser vazia")
     private String confirma_senha;
 
     public String getNome() {

@@ -28,7 +28,7 @@ public class UsuarioValidator {
             bindingResult.addError(new FieldError(
                     "usuarioForm",
                     "confirma_senha",
-                    null,
+                    usuarioForm.getConfirma_senha(),
                     false,
                     null,
                     null,
@@ -68,7 +68,7 @@ public class UsuarioValidator {
             bindingResult.addError(new FieldError(
                 "usuarioForm",
                 "cpf",
-                null,
+                usuarioForm.getCpf(),
                 false,
                 null,
                 null,
