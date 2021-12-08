@@ -1,9 +1,11 @@
 package com.estagiei.app.controllers.web;
 
+import com.estagiei.app.repositories.UsuarioRepository;
 import com.estagiei.app.services.RestClientService;
 import com.estagiei.app.forms.UsuarioForm;
 import com.estagiei.app.models.Nivel;
 import com.estagiei.app.models.Usuario;
+import com.estagiei.app.validators.UsuarioValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ import javax.validation.Valid;
 public class CadastroController {
     @Autowired
     RestClientService<Usuario> restClientService;
+
+    @Autowired
+    UsuarioRepository usuarioRepository;
 
     @GetMapping("")
     public String cadastro(UsuarioForm usuarioForm) {
@@ -39,6 +44,17 @@ public class CadastroController {
 
         Nivel nivel = new Nivel((short) 1);
         String pass = new BCryptPasswordEncoder(10).encode(usuarioForm.getSenha());
+
+        UsuarioValidator validator = UsuarioValidator.Builder.create()
+                .withUsuarioForm(usuarioForm)
+                .withBindingResult(bindingResult)
+                .withUsuarioRepository(usuarioRepository)
+                .build();
+
+        if(!validator.cpfValidator()
+               || !validator.emailValidator()
+               || !validator.passwordsValidator())
+            return "pages/cadastro";
 
         Usuario newUsuario = new Usuario();
         newUsuario.setCpf(usuarioForm.getCpf());

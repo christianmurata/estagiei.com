@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.thymeleaf.spring5.expression.Fields;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/login")
@@ -33,10 +34,24 @@ public class LoginController {
                        Model model) {
         if(bindingResult.hasErrors()) return "pages/login";
 
-        Usuario usuario = usuarioRepository.findByEmail(loginForm.getEmail());
+        Optional<Usuario> usuario = usuarioRepository.findByEmail(loginForm.getEmail());
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
-        if(!encoder.matches(loginForm.getSenha(), usuario.getSenha())) {
+        if(usuario.isEmpty()) {
+            bindingResult.addError(new FieldError(
+                    "loginForm",
+                    "email",
+                    loginForm.getEmail(),
+                    false,
+                    null,
+                    null,
+                    "Email não encontrado"
+            ));
+
+            return "pages/login";
+        }
+
+        if(!encoder.matches(loginForm.getSenha(), usuario.get().getSenha())) {
             bindingResult.addError(new FieldError(
                     "loginForm",
                     "senha",
@@ -44,7 +59,7 @@ public class LoginController {
                     false,
                     null,
                     null,
-                    "Senha inválida"
+                    "Senha incorreta"
             ));
 
             return "pages/login";

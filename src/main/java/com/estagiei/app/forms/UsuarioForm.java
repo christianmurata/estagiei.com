@@ -10,7 +10,6 @@ public class UsuarioForm {
     private String nome;
 
     @CPF(message = "CPF inválido")
-    @NotEmpty(message = "O CPF não deve ser vazio")
     private String cpf;
 
     @Email(message = "Email inválido")
