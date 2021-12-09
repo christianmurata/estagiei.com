@@ -1,5 +1,7 @@
 package com.estagiei.app.models;
 
+import com.estagiei.app.enums.Niveis;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -23,8 +25,8 @@ public class Nivel {
 
     public Nivel() {}
 
-    public Nivel(Short id) {
-        this.id = id;
+    public Nivel(Niveis nivel) {
+        this.id = (short) nivel.ordinal();
     }
 
     public Short getId() {

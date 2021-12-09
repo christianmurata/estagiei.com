@@ -18,6 +18,9 @@ public class Vaga {
     private String descricao;
 
     @Column(nullable = false)
+    private Boolean ativa = true;
+
+    @Column(nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private Modalidade modalidade;
 
@@ -61,6 +64,14 @@ public class Vaga {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public Boolean getAtiva() {
+        return ativa;
+    }
+
+    public void setAtiva(Boolean ativa) {
+        this.ativa = ativa;
     }
 
     public Modalidade getModalidade() {

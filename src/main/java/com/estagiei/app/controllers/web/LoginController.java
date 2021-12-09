@@ -1,5 +1,6 @@
 package com.estagiei.app.controllers.web;
 
+import com.estagiei.app.enums.Niveis;
 import com.estagiei.app.exceptions.BadRequestException;
 import com.estagiei.app.forms.LoginForm;
 import com.estagiei.app.models.Usuario;
@@ -77,6 +78,11 @@ public class LoginController {
 
         authService.createSession(request, loginForm.getEmail(), loginForm.getSenha());
 
-        return "redirect:/dashboard";
+        Niveis nivel = Niveis.valueOf(usuario.get().getNivel().getDescricao());
+
+        if(nivel == Niveis.RECRUTADOR)
+            return "redirect:/publicacoes";
+
+        return "redirect:/vagas";
     }
 }

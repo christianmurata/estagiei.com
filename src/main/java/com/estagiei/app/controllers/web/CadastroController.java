@@ -1,6 +1,8 @@
 package com.estagiei.app.controllers.web;
 
+import com.estagiei.app.enums.Niveis;
 import com.estagiei.app.repositories.UsuarioRepository;
+import com.estagiei.app.services.AuthService;
 import com.estagiei.app.services.RestClientService;
 import com.estagiei.app.forms.UsuarioForm;
 import com.estagiei.app.models.Nivel;
@@ -16,11 +18,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/cadastro")
 public class CadastroController {
+    @Autowired
+    AuthService authService;
+
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -43,10 +49,10 @@ public class CadastroController {
     @PostMapping("")
     public String usuario(@Valid UsuarioForm usuarioForm,
                           BindingResult bindingResult,
-                          Model model) {
+                          HttpServletRequest request) {
         if(bindingResult.hasErrors()) return "pages/cadastro";
 
-        Nivel nivel = new Nivel((short) 1);
+        Nivel nivel = new Nivel(Niveis.CANDIDATO);
         String pass = passwordEncoder.encode(usuarioForm.getSenha());
 
         UsuarioValidator validator = UsuarioValidator.Builder.create()
@@ -72,6 +78,6 @@ public class CadastroController {
                 .model(Usuario.class)
                 .postRequest(newUsuario);
 
-        return "redirect:/dashboard";
+        return "redirect:/login";
     }
 }
