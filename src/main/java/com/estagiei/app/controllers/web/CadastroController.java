@@ -8,6 +8,7 @@ import com.estagiei.app.models.Usuario;
 import com.estagiei.app.validators.UsuarioValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,9 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/cadastro")
 public class CadastroController {
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     @Autowired
     RestClientService<Usuario> restClientService;
 
@@ -43,7 +47,7 @@ public class CadastroController {
         if(bindingResult.hasErrors()) return "pages/cadastro";
 
         Nivel nivel = new Nivel((short) 1);
-        String pass = new BCryptPasswordEncoder(10).encode(usuarioForm.getSenha());
+        String pass = passwordEncoder.encode(usuarioForm.getSenha());
 
         UsuarioValidator validator = UsuarioValidator.Builder.create()
                 .withUsuarioForm(usuarioForm)
