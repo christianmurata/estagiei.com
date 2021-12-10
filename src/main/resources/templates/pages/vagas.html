@@ -12,9 +12,19 @@
     <navbar th:replace="default/topbar"></navbar>
 
     <div class="container-fluid py-4">
-      <div class="vagas row">
 
-        <div th:each="vaga: ${vagas}" class="vaga col-xl-3 col-sm-6 mb-xl-4 mb-4">
+      <th:block th:if="${#request.getParameter('sucesso')}">
+        <div th:replace="default/alert :: alert('A sua inscrição para o processo seletivo foi realizada com sucesso!', 'alert-success mb-4')">
+        </div>
+      </th:block>
+
+      <th:block th:if="${#request.getParameter('erro')}">
+        <div th:replace="default/alert :: alert('Você já se inscreveu para esse processo seletivo!', 'alert-danger mb-4')">
+        </div>
+      </th:block>
+
+      <div class="vagas row">
+        <div th:each="vaga: ${vagas}" class="vaga col-xl-3 col-sm-6 mb-xl-4 mb-4 pb-3">
           <div class="card">
             <div class="card-header p-3 pt-2">
               <div
@@ -39,7 +49,9 @@
                   <span th:text="${vaga.endereco.estado}" class="px-2"></span>
                 </li>
               </ul>
-              <button type="button" class="btn btn-primary btn-sm">Candidatar</button>
+              <a th:href="@{/vagas/} + ${vaga.id}">
+                <button type="button" class="btn btn-primary btn-sm">Candidatar</button>
+              </a>
             </div>
           </div>
         </div>

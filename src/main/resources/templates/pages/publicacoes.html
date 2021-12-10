@@ -13,14 +13,22 @@
 
     <div class="container-fluid py-4">
       <div class="vagas row">
-        <div class="col-12">
-          <div class="alert alert-success alert-dismissible fade in show text-white" role="alert">
-            <span class="text-sm">Vaga publicada com sucesso!</span>
-            <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
+        <th:block th:if="${#request.getParameter('insert')}">
+          <div th:replace="default/alert :: alert('Vaga publicada com sucesso!', 'alert-success')">
           </div>
+        </th:block>
 
+        <th:block th:if="${#request.getParameter('edit')}">
+          <div th:replace="default/alert :: alert('Vaga editada com sucesso!', 'alert-success')">
+          </div>
+        </th:block>
+
+        <th:block th:if="${#request.getParameter('edit')}">
+          <div th:replace="default/alert :: alert('Vaga desativada com sucesso!', 'alert-success')">
+          </div>
+        </th:block>
+
+        <div class="col-12">
           <button class="btn bg-gradient-primary">Publicar vaga</button>
           <div class="card my-4">
             <div class="card-body px-0 pb-2">
