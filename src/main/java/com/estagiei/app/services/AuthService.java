@@ -34,4 +34,10 @@ public class AuthService {
 
         logger.info("Session criada para o usuario: " + email);
     }
+
+    public Usuario userLoggedIn() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        return (Usuario) authentication.getPrincipal();
+    }
 }
