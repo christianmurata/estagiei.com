@@ -32,6 +32,9 @@ public class Vaga {
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco endereco;
 
+    @OneToOne(mappedBy = "vaga")
+    private Seletivo seletivo;
+
     public Vaga() {}
 
     public Long getId() {
@@ -88,5 +91,13 @@ public class Vaga {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Seletivo getSeletivo() {
+        return seletivo;
+    }
+
+    public void setSeletivo(Seletivo seletivo) {
+        this.seletivo = seletivo;
     }
 }

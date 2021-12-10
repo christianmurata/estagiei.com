@@ -2,7 +2,9 @@ package com.estagiei.app.controllers.api;
 
 import com.estagiei.app.exceptions.NotFoundException;
 import com.estagiei.app.models.Empresa;
+import com.estagiei.app.models.Seletivo;
 import com.estagiei.app.models.Vaga;
+import com.estagiei.app.repositories.SeletivoRepository;
 import com.estagiei.app.repositories.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,9 @@ import java.util.Optional;
 public class VagaController {
     @Autowired
     VagaRepository vagaRepository;
+
+    @Autowired
+    SeletivoRepository seletivoRepository;
 
     @GetMapping("/{empresa}/vagas")
     public List<Vaga> index(@PathVariable("empresa") Optional<Empresa> empresa)
@@ -43,7 +48,10 @@ public class VagaController {
 
         newVaga.setEmpresa(empresa.get());
 
-        return vagaRepository.saveAndFlush(newVaga);
+        Vaga vaga = vagaRepository.saveAndFlush(newVaga);
+        Seletivo seletivo = seletivoRepository.saveAndFlush(new Seletivo(vaga));
+
+        return vaga;
     }
 
     public void verifyEmpresa(Optional<Empresa> empresa) throws NotFoundException {

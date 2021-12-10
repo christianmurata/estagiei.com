@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Table(name = "usuarios")
@@ -28,6 +29,14 @@ public class Usuario implements UserDetails {
     @OneToOne
     @JoinColumn(name = "nivel_id", referencedColumnName = "id", nullable = false)
     private Nivel nivel;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "seletivos_usuarios",
+            joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "seletivo_id", referencedColumnName = "id")
+    )
+    private Set<Seletivo> seletivos;
 
     @OneToOne
     @JoinColumn(name = "endereco_id", referencedColumnName = "id")
@@ -136,5 +145,13 @@ public class Usuario implements UserDetails {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public Set<Seletivo> getSeletivos() {
+        return seletivos;
+    }
+
+    public void setSeletivos(Set<Seletivo> seletivos) {
+        this.seletivos = seletivos;
     }
 }
