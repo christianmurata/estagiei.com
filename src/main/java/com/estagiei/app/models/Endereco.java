@@ -21,6 +21,12 @@ public class Endereco {
     @Column(nullable = false)
     private String cep;
 
+    @Column(nullable = false)
+    private String cidade;
+
+    @Column(nullable = false)
+    private String estado;
+
     private String complemento;
 
     public Endereco() {}
@@ -67,6 +73,22 @@ public class Endereco {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getComplemento() {
