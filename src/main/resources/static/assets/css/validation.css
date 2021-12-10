@@ -28,3 +28,13 @@
 .form-group.has-error .input-group {
   margin-bottom: 0 !important;
 }
+
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent !important;
+}
+
+.mdl-textfield:not(.is-dirty) input::-webkit-datetime-edit {
+  color: transparent !important; 
+}
