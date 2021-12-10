@@ -30,6 +30,10 @@ public class Usuario implements UserDetails {
     @JoinColumn(name = "nivel_id", referencedColumnName = "id", nullable = false)
     private Nivel nivel;
 
+    @OneToOne
+    @JoinColumn(name = "curriculo_id", referencedColumnName = "id")
+    private Curriculo curriculo;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "seletivos_usuarios",
@@ -153,5 +157,13 @@ public class Usuario implements UserDetails {
 
     public void setSeletivos(Set<Seletivo> seletivos) {
         this.seletivos = seletivos;
+    }
+
+    public Curriculo getCurriculo() {
+        return curriculo;
+    }
+
+    public void setCurriculo(Curriculo curriculo) {
+        this.curriculo = curriculo;
     }
 }
