@@ -1,0 +1,23 @@
+.inicio{
+    /* height: 60vh; */
+    /* margin: 1.2em 0; */
+}
+.card-inicio{
+    padding: 5%;
+}
+.card-inicio h2{
+    margin-bottom: 0.8em;
+}
+.card-inicio .button-pesquisa{
+    border:1px solid;
+    padding: 5px 8px;
+    vertical-align: middle;
+    background:#e91e63;
+    color:white;
+    border-radius:3px;
+    font-size: 20px;
+    text-decoration:none;
+}
+.card-deck .card {
+    width: 350px;
+}

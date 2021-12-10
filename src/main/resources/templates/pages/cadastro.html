@@ -6,7 +6,7 @@
 <link href="../assets/css/validation.css" rel="stylesheet">
 
 <body class="">
-  <div th:replace="default/navbar"></div>
+  <nav th:replace="default/navbar"></nav>
 
   <main class="main-content  mt-0">
     <section>
@@ -107,6 +107,8 @@
         </div>
       </div>
     </section>
+
+    <footer th:replace="default/footer :: addClass('bottom-2')"></footer>
   </main>
 
   <script th:replace="default/scripts"></script>

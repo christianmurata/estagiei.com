@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head th:replace="default/head"></head>
+
+<body class="g-sidenav-show  bg-gray-200">
+
+  <aside th:replace="default/sidebar"></aside>
+
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+
+    <navbar th:replace="default/topbar"></navbar>
+
+    <div class="container-fluid py-4">
+      <div class="vagas row">
+        <div class="col-12">
+          <div class="alert alert-success alert-dismissible fade in show text-white" role="alert">
+            <span class="text-sm">Vaga publicada com sucesso!</span>
+            <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+
+          <button class="btn bg-gradient-primary">Publicar vaga</button>
+          <div class="card my-4">
+            <div class="card-body px-0 pb-2">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Vaga</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Modalidade</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Data Cadastro</th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="vaga: ${vagas}">
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 th:text="${vaga.titulo}" class="mb-0 text-sm">titulo</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p th:text="${vaga.modalidade}" class="text-xs font-weight-bold mb-0">modalidade</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span th:if="${vaga.ativa}" class="badge badge-sm bg-gradient-success">Publicada</span>
+                      <span th:if="${not vaga.ativa}" class="badge badge-sm bg-gradient-success">Desativada</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs px-2" data-toggle="tooltip"
+                        data-original-title="Editar vaga">
+                        Editar
+                      </a>
+
+                      <a href="javascript:;" class="text-secondary font-weight-bold text-xs px-2" data-toggle="tooltip"
+                        data-original-title="Desativar vaga">
+                        Desativar
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div th:replace="default/plugin"></div>
+
+  <script th:replace="default/scripts"></script>
+</body>
+
+</html>
